@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.liuyulong.myapplication"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions{
+            annotationProcessorOptions.includeCompileClasspath = true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    packagingOptions{
+        exclude 'META-INF/rxjava.properties'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "${android_lib_dagger}"
+    implementation "${android_lib_dagger_android}"
+    implementation "${android_lib_dagger_android_support}"
+    annotationProcessor "${android_lib_dagger_annotation_processor}"
+    annotationProcessor "${android_lib_dagger_compiler}"
+    implementation "${android_lib_lifecycle_runtime}"
+    implementation "${android_lib_lifecycle_extension}"
+    annotationProcessor "${android_lib_lifecycle_compiler}"
+    implementation "${android_arch_persistence_room_runtime}"
+    annotationProcessor "${android_arch_persistence_room_compiler}"
+    implementation "${android_retrofit2_retrofit}"
+    implementation "${android_retrofit2_converter_gson}"
+    implementation "${android_retrofit2_adapter_rxjava}"
+    implementation "${android_okhttp3_loggin_interceptor}"
+    implementation "${android_rxjava2_rxjava}"
+    implementation "${android_rxjava2_rxandroid}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
